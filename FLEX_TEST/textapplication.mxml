@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   backgroundColor="0x000000”  
+			   applicationComplete=“onAppComplate(event)”>
+			   
+	<fx:Script> 
+		<![CDATA[
+			import com.azer.IOSApplicationSettings.Settings;
+			
+			protected var isIos:* = false;
+			protected var isIos7:* = false;
+			
+			protected var iosSettings:*;
+			
+			protected function onAppCpmlate(event:*):void{
+				if(Capabilities.version.indexOf("IOS") == 0) {
+					var osInfo:Array = Capabilities.os.split(" ");
+					var versionNumber:Number = parseFloat(osInfo[2]);
+					isIos = true;
+					if(versionNumber >= 7) {
+						isIos7 = true;
+						// for ios7 status bar overlay padding bug…
+						var t:Number = height>=960 ? 40 : 20;
+						setStyle(“paddingTop”,t);
+					}
+				}
+				callLater(refreshStatusBar);
+			}
+			
+			protected function refreshStatusBar():void{
+				if(isIos == true){
+					if(!iosSettings){
+						iosSettings = new Settings();
+					}
+					iosSettings.RefreshStatusBar(Settings.UIStatusBarStyleLightContent);
+				}
+				return;
+			}
+			
+			protected var mediaSource:CameraRoll = new CameraRoll();
+			protected function browse(e:*):void{
+				if(CameraRoll.supportsBrowseForImage){
+					mediaSource.browseForImage();
+					mediaSource.addEventListener( MediaEvent.SELECT, onSelectMedia, false, 0, true );
+					mediaSource.addEventListener( Event.CANCEL, onCancelMedia , false, 0, true);
+					mediaSource.addEventListener(ErrorEvent.ERROR,onErrorMedia , false, 0, true);
+				}
+			}
+			
+			protected function onSelectMedia(e:*):void{
+				refreshStatusBar();
+				// … calllater codes
+			}
+			
+			protected function onCancelMedia(e:*):void{
+				refreshStatusBar();
+				// … calllater codes
+			}
+			
+			protected function onErrorMedia(e:*):void{
+				refreshStatusBar();
+				// … calllater codes
+			}
+		]]>
+	</fx:Script>
+	
+	
+	<s:VGroup width="100%" gap=“5”>
+		<s:Label text="Test Application" color="0xFFFFFF"/>
+		<s:Button label="CameraRoll" click="browse(event)"/>
+	</s:VGroup>
+	
+</s:Application>
