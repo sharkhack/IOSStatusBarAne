@@ -6,6 +6,9 @@
 			   
 	<fx:Script> 
 		<![CDATA[
+			//  Created by Azer Bulbul on 12/29/13.
+			//  Copyright (c) 2013 Azer Bulbul. All rights reserved.
+			
 			import com.azer.IOSApplicationSettings.Settings;
 			
 			protected var isIos:* = false;
