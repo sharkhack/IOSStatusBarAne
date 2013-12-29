@@ -1,3 +1,5 @@
+//  Created by Azer Bulbul on 12/29/13.
+//  Copyright (c) 2013 Azer Bulbul. All rights reserved.
 package com.azer.IOSApplicationSettings
 {
 	import flash.external.ExtensionContext;
