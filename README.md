@@ -40,9 +40,13 @@ refresh statusbar;
 
 /**
 Settings.UIStatusBarStyleDefault
+
 Settings.UIStatusBarStyleLightContent
+
 Settings.UIStatusBarStyleBlackOpaque
+
 Settings.UIStatusBarStyleBlackTranslucent
+
 **/
 
 com.azer.IOSApplicationSettings.Settings::RefreshStatusBar(Settings.UIStatusBarStyleLightContent);
