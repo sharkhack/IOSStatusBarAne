@@ -25,13 +25,13 @@ if(Capabilities.version.indexOf("IOS") == 0)
         if(versionNumber >= 7) 
         {
                 isIos7 = true;
-                // for ios7 status bar overlay padding bug…
+                /* for ios7 status bar overlay padding bug… */
                 var t:Number = height>=960 ? 40 : 20;
                 setStyle(“paddingTop”,t);
         }
 }
 
-//STATUS BAR THEME REFRESH
+/* STATUS BAR THEME REFRESH */
 
 callLater(refreshStatusBar);
 
