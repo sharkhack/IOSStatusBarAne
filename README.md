@@ -1,5 +1,8 @@
 IOSStatusBarAne
 ===============
+// STATUS BAR THEME WAS GETTING CAHNGED, WHEN  CAMERAROLL OR IOS NATIVE WINDOW HAD OPENED.
+// HERE IS THE ANE FILE TO FIX THIS BUG IN ADOBE AIR 3.9 >
+// ENJOY! :)
 
 ios status bar refresh  native extension with ane file.
 ios7 status bar bug solution fixed.
@@ -11,18 +14,25 @@ ane file path: https://github.com/sharkhack/IOSStatusBarAne/blob/master/AS3LIB/I
 
 how to use and test code path: https://github.com/sharkhack/IOSStatusBarAne/blob/master/FLEX_TEST/textapplication.mxml
 
-if(Capabilities.version.indexOf("IOS") == 0) {
+//FOR IOS -> AIR MOBILE APPLICATION STATUS BAR OVERLAY PADDING - AS3
+if(Capabilities.version.indexOf("IOS") == 0)
+{
         var osInfo:Array = Capabilities.os.split(" ");
         var versionNumber:Number = parseFloat(osInfo[2]);
         isIos = true;
-        if(versionNumber >= 7) {
+        if(versionNumber >= 7) 
+        {
                 isIos7 = true;
                 // for ios7 status bar overlay padding bug…
                 var t:Number = height>=960 ? 40 : 20;
                 setStyle(“paddingTop”,t);
         }
 }
+// STATUS BAR THEME REFRESH 
+// STATUS BAR THEME WAS GETTING CAHNGED, WHEN  CAMERAROLL OR IOS NATIVE WINDOW HAD OPENED.
+// HERE IS THE ANE FILE TO FIX THIS BUG IN ADOBE AIR 3.9 >
 callLater(refreshStatusBar);
+
 
 refresh statusbar;
 
