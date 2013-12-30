@@ -1,20 +1,22 @@
 IOSStatusBarAne
 ===============
-// STATUS BAR THEME WAS GETTING CAHNGED, WHEN  CAMERAROLL OR IOS NATIVE WINDOW HAD OPENED.
-// HERE IS THE ANE FILE TO FIX THIS BUG IN ADOBE AIR 3.9 >
-// ENJOY! :)
+
+Statusbar theme was getting changed when CameraRoll  or ios native window had opened.
+Here is the ane file to fix this bug in adobe air 3.9 >
+
+ENJOY! :)
 
 ios status bar refresh  native extension with ane file.
 ios7 status bar bug solution fixed.
 ios7 cameraroll  as there after status bar not refresh bug solution fixed.
-
 Adobe Air i0S7 StatusBar Overlays stage, Adobe Air 3.9 bug fixed.
 
 ane file path: https://github.com/sharkhack/IOSStatusBarAne/blob/master/AS3LIB/IOSApplicationSettings/release/IOSApplicationSettings.ane
 
 how to use and test code path: https://github.com/sharkhack/IOSStatusBarAne/blob/master/FLEX_TEST/textapplication.mxml
 
-//FOR IOS -> AIR MOBILE APPLICATION STATUS BAR OVERLAY PADDING - AS3
+FOR IOS -> AIR MOBILE APPLICATION STATUS BAR OVERLAY PADDING - AS3
+
 if(Capabilities.version.indexOf("IOS") == 0)
 {
         var osInfo:Array = Capabilities.os.split(" ");
@@ -28,9 +30,9 @@ if(Capabilities.version.indexOf("IOS") == 0)
                 setStyle(“paddingTop”,t);
         }
 }
-// STATUS BAR THEME REFRESH 
-// STATUS BAR THEME WAS GETTING CAHNGED, WHEN  CAMERAROLL OR IOS NATIVE WINDOW HAD OPENED.
-// HERE IS THE ANE FILE TO FIX THIS BUG IN ADOBE AIR 3.9 >
+
+//STATUS BAR THEME REFRESH
+
 callLater(refreshStatusBar);
 
 
