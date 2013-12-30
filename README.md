@@ -5,9 +5,32 @@ ios status bar refresh  native extension with ane file.
 ios7 status bar bug solution fixed.
 ios7 cameraroll  as there after status bar not refresh bug solution fixed.
 
-Adobe Air i0S7 StatusBar Overlays stage, Adobe Air 3.9? Is there a Workarround
-http://forums.adobe.com/message/5712234 bug fixed.
+Adobe Air i0S7 StatusBar Overlays stage, Adobe Air 3.9 bug fixed.
 
 ane file path: https://github.com/sharkhack/IOSStatusBarAne/blob/master/AS3LIB/IOSApplicationSettings/release/IOSApplicationSettings.ane
 
 how to use and test code path: https://github.com/sharkhack/IOSStatusBarAne/blob/master/FLEX_TEST/textapplication.mxml
+
+if(Capabilities.version.indexOf("IOS") == 0) {
+        var osInfo:Array = Capabilities.os.split(" ");
+        var versionNumber:Number = parseFloat(osInfo[2]);
+        isIos = true;
+        if(versionNumber >= 7) {
+                isIos7 = true;
+                // for ios7 status bar overlay padding bug…
+                var t:Number = height>=960 ? 40 : 20;
+                setStyle(“paddingTop”,t);
+        }
+}
+callLater(refreshStatusBar);
+
+refresh statusbar;
+
+/**
+Settings.UIStatusBarStyleDefault
+Settings.UIStatusBarStyleLightContent
+Settings.UIStatusBarStyleBlackOpaque
+Settings.UIStatusBarStyleBlackTranslucent
+**/
+
+com.azer.IOSApplicationSettings.Settings::RefreshStatusBar(Settings.UIStatusBarStyleLightContent);
