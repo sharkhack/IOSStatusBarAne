@@ -8,7 +8,10 @@
 
 #import "IOSApplicationSettings.h"
 
+FREContext AirIPCtx = nil;
+
 @implementation IOSApplicationSettings
+
 
 static IOSApplicationSettings *sharedInstance = nil;
 
@@ -24,7 +27,7 @@ static IOSApplicationSettings *sharedInstance = nil;
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    return [self sharedInstance];
+    return [IOSApplicationSettings sharedInstance];
 }
 
 - (id)copy
@@ -32,7 +35,27 @@ static IOSApplicationSettings *sharedInstance = nil;
     return self;
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+}
+
+- (void) refreshStatusBar:(NSString*)styleType
+{
+    if([styleType  isEqualToString:@"UIStatusBarStyleLightContent"]){
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    } else if ([styleType  isEqualToString:@"UIStatusBarStyleBlackOpaque"]){
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+    } else if ([styleType  isEqualToString:@"UIStatusBarStyleBlackTranslucent"]){
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+    } else if ([styleType  isEqualToString:@"UIStatusBarStyleDefault"]){
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }
+}
 @end
+
+
+
 
 FREObject RefreshStatusBar(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     
@@ -44,20 +67,11 @@ FREObject RefreshStatusBar(FREContext ctx, void* funcData, uint32_t argc, FREObj
         STYLE_TYPE = [NSString stringWithUTF8String:(char*)STYLE_CTYPE];
     }
     
-    if([STYLE_TYPE  isEqualToString:@"UIStatusBarStyleLightContent"]){
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    } else if ([STYLE_TYPE  isEqualToString:@"UIStatusBarStyleBlackOpaque"]){
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
-    } else if ([STYLE_TYPE  isEqualToString:@"UIStatusBarStyleBlackTranslucent"]){
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
-    } else if ([STYLE_TYPE  isEqualToString:@"UIStatusBarStyleDefault"]){
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    }
-    
-    //[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [[IOSApplicationSettings sharedInstance] refreshStatusBar:STYLE_TYPE];
     
 	return NULL;
 }
+
 
 void ContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
 						uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet) {
@@ -70,8 +84,10 @@ void ContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
 	func[0].name = (const uint8_t*) "RefreshStatusBar";
 	func[0].functionData = NULL;
     func[0].function = &RefreshStatusBar;
-	
+    
 	*functionsToSet = func;
+    
+    AirIPCtx = ctx;
     
     NSLog(@"Exiting ContextInitializer()");
     
@@ -79,6 +95,7 @@ void ContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
 
 
 void ContextFinalizer(FREContext ctx) {
+    AirIPCtx = nil;
     return;
 }
 

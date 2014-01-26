@@ -12,6 +12,9 @@
 
 + (IOSApplicationSettings *)sharedInstance;
 
+- (void) refreshStatusBar:(NSString*)styleType;
+
+
 @end
 
 void ContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
