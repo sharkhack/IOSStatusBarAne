@@ -54,5 +54,6 @@ com.azer.IOSApplicationSettings.Settings::RefreshStatusBar(Settings.UIStatusBarS
 
 
 // YES or NO
+
 com.azer.IOSApplicationSettings.Settings::StatusbarHidden("YES");
 
