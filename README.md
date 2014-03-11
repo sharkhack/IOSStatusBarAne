@@ -10,6 +10,7 @@ ios status bar refresh  native extension with ane file.
 ios7 status bar bug solution fixed.
 ios7 cameraroll  as there after status bar not refresh bug solution fixed.
 Adobe Air i0S7 StatusBar Overlays stage, Adobe Air 3.9 bug fixed.
+New Version ios statusbar hidden apparance.
 
 ane file path: https://github.com/sharkhack/IOSStatusBarAne/blob/master/AS3LIB/IOSApplicationSettings/release/IOSApplicationSettings.ane
 
@@ -50,3 +51,8 @@ Settings.UIStatusBarStyleBlackTranslucent
 **/
 
 com.azer.IOSApplicationSettings.Settings::RefreshStatusBar(Settings.UIStatusBarStyleLightContent);
+
+
+// YES or NO
+com.azer.IOSApplicationSettings.Settings::StatusbarHidden("YES");
+
