@@ -22,9 +22,27 @@ package com.azer.IOSApplicationSettings
 			}
 		}
 		
+		/**
+		 * TODO:
+		 * - ios statusbar refresh
+		 * @param statusbarstyle is String ("UIStatusBarStyleDefault", "UIStatusBarStyleLightContent", "UIStatusBarStyleBlackOpaque", "UIStatusBarStyleBlackTranslucent")
+		 * 
+		 * @author Azer BULBUL
+		 */
 		public function RefreshStatusBar(statusbarstyle:String):void
 		{
 			ext.call('RefreshStatusBar',statusbarstyle);
+		}
+		
+		/**
+		 * TODO:
+		 * -ios statusbar hidden apparance
+		 * @param hidden String(YES/NO). NO : StatusBar be shown. and YES : StatusBar is not shown.
+		 * 
+		 * @author Azer BULBUL
+		 */
+		public function StatusbarHidden(hidden:String='NO'):void{
+			ext.call('HiddenhStatusBar',hidden);
 		}
 		
 	}

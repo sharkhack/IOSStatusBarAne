@@ -41,6 +41,18 @@
 				return;
 			}
 			
+			protected var isHidden:Boolean = false;
+			protected function hideStatusBar(hidden:Boolean = false):void{
+				isHidden = hidden;
+				if(isIos == true){
+					if(!iosSettings){
+						iosSettings = new Settings();
+					}
+					iosSettings.StatusbarHidden((hidden == true ? 'YES' : 'NO'));
+				}
+				return;
+			}
+			
 			protected var mediaSource:CameraRoll = new CameraRoll();
 			protected function browse(e:*):void{
 				if(CameraRoll.supportsBrowseForImage){
@@ -72,6 +84,8 @@
 	<s:VGroup width="100%" gap=“5”>
 		<s:Label text="Test Application" color="0xFFFFFF"/>
 		<s:Button label="CameraRoll" click="browse(event)"/>
+		
+		<s:Button label="Show / Hide StatusBar" click="hideStatusBar((isHidden ? false : true))"/>
 	</s:VGroup>
 	
 </s:Application>

@@ -40,6 +40,14 @@ static IOSApplicationSettings *sharedInstance = nil;
     [super dealloc];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (void) hideStatusBar:(BOOL)hidden{
+    [[UIApplication sharedApplication] setStatusBarHidden:hidden];
+}
+
 - (void) refreshStatusBar:(NSString*)styleType
 {
     if([styleType  isEqualToString:@"UIStatusBarStyleLightContent"]){
@@ -72,18 +80,45 @@ FREObject RefreshStatusBar(FREContext ctx, void* funcData, uint32_t argc, FREObj
 	return NULL;
 }
 
+FREObject HiddenhStatusBar(FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+    
+    uint32_t HIDDEN_CLENTH;
+    const uint8_t *HIDDEN_C;
+    NSString *HIDDEN = nil;
+    
+    if (FRE_OK == FREGetObjectAsUTF8(argv[0], &HIDDEN_CLENTH, &HIDDEN_C)) {
+        HIDDEN = [NSString stringWithUTF8String:(char*)HIDDEN_C];
+    }
+    
+    BOOL shidden = NO;
+    
+    if([HIDDEN isEqualToString:@"YES"]){
+        shidden = YES;
+    } else {
+        shidden = NO;
+    }
+    
+    [[IOSApplicationSettings sharedInstance] hideStatusBar:shidden];
+    
+	return NULL;
+}
+
 
 void ContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
 						uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet) {
     
     NSLog(@"Entering ContextInitializer()");
     
-	*numFunctionsToTest = 1;
+	*numFunctionsToTest = 2;
     
-	FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * 1);
+	FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * 2);
 	func[0].name = (const uint8_t*) "RefreshStatusBar";
 	func[0].functionData = NULL;
     func[0].function = &RefreshStatusBar;
+    
+    func[1].name = (const uint8_t*) "HiddenhStatusBar";
+	func[1].functionData = NULL;
+    func[1].function = &HiddenhStatusBar;
     
 	*functionsToSet = func;
     

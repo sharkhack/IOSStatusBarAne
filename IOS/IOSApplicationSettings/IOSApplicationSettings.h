@@ -14,6 +14,7 @@
 
 - (void) refreshStatusBar:(NSString*)styleType;
 
+- (void) hideStatusBar:(BOOL)hidden;
 
 @end
 
