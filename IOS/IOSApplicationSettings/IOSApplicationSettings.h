@@ -19,12 +19,12 @@
 @end
 
 //native extension caller...
-void ContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
+void IOSAppSettingsContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
 						uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet);
 
-void ContextFinalizer(FREContext ctx);
+void IOSAppSettingsContextFinalizer(FREContext ctx);
 
-void ExtInitializer(void** extDataToSet, FREContextInitializer* ctxInitializerToSet,
+void IOSAppSettingsExtInitializer(void** extDataToSet, FREContextInitializer* ctxInitializerToSet,
                     FREContextFinalizer* ctxFinalizerToSet);
 
-void ExtFinalizer(void* extData);
+void IOSAppSettingsExtFinalizer(void* extData);

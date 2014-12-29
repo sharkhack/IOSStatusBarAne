@@ -6,6 +6,8 @@ package com.azer.IOSApplicationSettings
 	
 	public class Settings
 	{
+		
+		private static var _instance : Settings;
 		private static var ext:ExtensionContext = null;
 		
 		public static const UIStatusBarStyleDefault:String = "UIStatusBarStyleDefault";
@@ -15,11 +17,19 @@ package com.azer.IOSApplicationSettings
 		
 		public function Settings()
 		{
-			super();
-			if(ext == null){
-				ext = ExtensionContext.createExtensionContext("com.azer.IOSApplicationSettings",null);
-			}else{
+			if (!_instance)
+			{
+				if(ext == null){
+					ext = ExtensionContext.createExtensionContext("com.azer.IOSApplicationSettings",null);
+					
+				}
+				_instance = this;
 			}
+		}
+		
+		public static function getInstance() : Settings
+		{
+			return _instance ? _instance : new Settings();
 		}
 		
 		/**

@@ -8,7 +8,7 @@
 
 #import "IOSApplicationSettings.h"
 
-FREContext AirIPCtx = nil;
+FREContext IOSAppSettingsAirIPCtx = nil;
 
 @implementation IOSApplicationSettings
 
@@ -104,7 +104,7 @@ FREObject HiddenhStatusBar(FREContext ctx, void* funcData, uint32_t argc, FREObj
 }
 
 
-void ContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
+void IOSAppSettingsContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
 						uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet) {
     
     NSLog(@"Entering ContextInitializer()");
@@ -122,26 +122,26 @@ void ContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
     
 	*functionsToSet = func;
     
-    AirIPCtx = ctx;
+    IOSAppSettingsAirIPCtx = ctx;
     
     NSLog(@"Exiting ContextInitializer()");
     
 }
 
 
-void ContextFinalizer(FREContext ctx) {
-    AirIPCtx = nil;
+void IOSAppSettingsContextFinalizer(FREContext ctx) {
+    IOSAppSettingsAirIPCtx = nil;
     return;
 }
 
-void ExtInitializer(void** extDataToSet, FREContextInitializer* ctxInitializerToSet,
+void IOSAppSettingsExtInitializer(void** extDataToSet, FREContextInitializer* ctxInitializerToSet,
                     FREContextFinalizer* ctxFinalizerToSet) {
     
     *extDataToSet = NULL;
-    *ctxInitializerToSet = &ContextInitializer;
-    *ctxFinalizerToSet = &ContextFinalizer;
+    *ctxInitializerToSet = &IOSAppSettingsContextInitializer;
+    *ctxFinalizerToSet = &IOSAppSettingsContextFinalizer;
 }
 
-void ExtFinalizer(void* extData) {
+void IOSAppSettingsExtFinalizer(void* extData) {
     return;
 }

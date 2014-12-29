@@ -14,8 +14,6 @@
 			protected var isIos:* = false;
 			protected var isIos7:* = false;
 			
-			protected var iosSettings:*;
-			
 			protected function onAppCpmlate(event:*):void{
 				if(Capabilities.version.indexOf("IOS") == 0) {
 					var osInfo:Array = Capabilities.os.split(" ");
@@ -33,10 +31,7 @@
 			
 			protected function refreshStatusBar():void{
 				if(isIos == true){
-					if(!iosSettings){
-						iosSettings = new Settings();
-					}
-					iosSettings.RefreshStatusBar(Settings.UIStatusBarStyleLightContent);
+					Settings.getInstance().RefreshStatusBar(Settings.UIStatusBarStyleLightContent);
 				}
 				return;
 			}
@@ -45,10 +40,7 @@
 			protected function hideStatusBar(hidden:Boolean = false):void{
 				isHidden = hidden;
 				if(isIos == true){
-					if(!iosSettings){
-						iosSettings = new Settings();
-					}
-					iosSettings.StatusbarHidden((hidden == true ? 'YES' : 'NO'));
+					Settings.getInstance().StatusbarHidden((hidden == true ? 'YES' : 'NO'));
 				}
 				return;
 			}
